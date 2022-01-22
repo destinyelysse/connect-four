@@ -1,21 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap");
+
+html {
+  height: 100vh;
+}
 
 .font-balsamiq-sans {
-    font-family: 'Balsamiq Sans';
+  font-family: "Balsamiq Sans";
 }
 
-.connect-four-grid {
-    display: grid;
-    grid-template: repeat(6, 1fr) / repeat(7, 1fr);
-    grid-gap: 1rem;
+#connect-four-board-container {
+  height: 60vh;
+  width: 60vh;
+  display: grid;
+  grid-template: repeat(7, 1fr) / repeat(7, 1fr);
+  margin: auto;
 }
 
-.connect-four-space {
-    border-radius: 100%;
+.board-square {
+  grid-area: span 1 / span 1;
+  grid-gap: 0.25rem;
 }
 
-.connect-four-space::before {
-    content: "";
-    padding-bottom: 100%;
-    display: block;
-  }
+.gameSpaceHole {
+  border-radius: 100%;
+  background-color: red;
+  width: 90%;
+  height: 90%;
+  mix-blend-mode: screen;
+}
