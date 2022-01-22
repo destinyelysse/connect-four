@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+
+.font-balsamiq-sans {
+    font-family: 'Balsamiq Sans';
+}
+
+.connect-four-grid {
+    display: grid;
+    grid-template: repeat(6, 1fr) / repeat(7, 1fr);
+    grid-gap: 1rem;
+}
+
+.connect-four-space {
+    border-radius: 100%;
+}
+
+.connect-four-space::before {
+    content: "";
+    padding-bottom: 100%;
+    display: block;
+  }
