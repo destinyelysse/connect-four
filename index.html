@@ -20,7 +20,7 @@
     <title>Document</title>
   </head>
   <body class="vh-100 m-0 bg-info bg-opacity-50">
-    <header class="container d-flex justify-content-center">
+    <header id="game-title" class="container d-flex justify-content-center">
       <h1
         class="d-inline display-1 text-center bg-warning border border-primary border-5 rounded-3 font-balsamiq-sans text-primary m-2 p-3"
       >
@@ -28,9 +28,76 @@
       </h1>
     </header>
     <main class="h-75 d-flex align-items-start justify-content-center">
+      <!-- Instructions -->
+      <div
+        class="modal fade"
+        id="instructionsModal"
+        tabindex="-1"
+        aria-labelledby="instructionsModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="instructionsModalLabel">
+                How To Play
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <h6>About Connect Four</h6>
+              <p>
+                Connect Four is a strategy game played between two players. Each
+                player takes turns placing their token in the board and trying
+                to predict where their opponent may place their token.
+              </p>
+              <h6>Rules</h6>
+              <p>
+                The board is a grid of 6 rows and 7 columns. Each player has
+                tokens with different colors and plays one token on each turn.
+              </p>
+              <p>
+                On your turn, you choose which column to drop your token into.
+              </p>
+              <p>
+                Your token will start at the top of your chosen column, falling
+                down through the rows until it finds the lowest unoccupied
+                space.
+              </p>
+              <p>
+                Players take turns dropping tokens in until one player is able
+                to place four tokens in a row - horizontally, vertically, or
+                diagonally.
+              </p>
+              <img
+                id="connect-four-img"
+                src="images/winner.png"
+                alt="A connect four board with four red tokens next to each other vertically."
+              />
+              <p>That player is the winner!</p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Got it!
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Home Screen -->
       <div class="d-flex justify-content-center" id="home-screen">
         <button
           type="button"
+          id="startGameBtn"
           class="btn btn-primary btn-lg m-2"
           onclick="startGame()"
         >
@@ -39,23 +106,58 @@
         <button
           type="button"
           class="btn btn-light btn-lg m-2"
-          onclick="showInstructions()"
+          data-bs-toggle="modal"
+          data-bs-target="#instructionsModal"
         >
           View Instructions
         </button>
       </div>
+      <!-- Game Screen -->
       <div class="d-none w-100" id="game-screen">
         <div id="connect-four-board-container"></div>
         <div id="gameplay-note" class="d-flex justify-content-center w-100">
-          <h2 class="display-5">Your turn, Player 1!</h2>
+          <h2 class="fs-3" id="game-message">Your turn, Player 1!</h2>
         </div>
         <div id="gameplay-buttons" class="d-flex justify-content-center w-100">
-          <button type="button" class="btn btn-primary m-3">Move Left</button>
-          <button type="button" class="btn btn-danger btn-lg m-3">
+          <button
+            type="button"
+            class="btn btn-primary m-3"
+            id="move-left-btn"
+            onclick="moveCurrentTokenLeft()"
+          >
+            Move Left
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btn-lg m-3"
+            id="drop-token-btn"
+            onclick="dropToken()"
+          >
             Drop Token!
           </button>
-          <button type="button" class="btn btn-primary m-3">Move Right</button>
+          <button
+            type="button"
+            class="btn btn-primary m-3"
+            id="move-right-btn"
+            onclick="moveCurrentTokenRight()"
+          >
+            Move Right
+          </button>
         </div>
+        <div
+          id="play-again-button"
+          class="d-flex justify-content-center w-100 d-none"
+        >
+          <button
+            type="button"
+            class="btn btn-primary m3"
+            id="play-again-btn"
+            onclick="playAgain()"
+          >
+            Play Again!
+          </button>
+        </div>
+        <div id="played-tokens-container"></div>
       </div>
     </main>
   </body>
