@@ -396,9 +396,11 @@ function playAgain() {
   if (playerGoingFirst === player1name) {
     playerGoingFirst = player2name;
     currentPlayer = player2name;
+    currentTokenColor = player2tokenColor;
   } else {
     playerGoingFirst = player1name;
     currentPlayer = player1name;
+    currentTokenColor = player1tokenColor;
   }
   setGameMessageForPlayerTurn();
   putNewTokenOnScreen();
