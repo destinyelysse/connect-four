@@ -3,6 +3,11 @@
 
 Connect Four is a web-based, two-player strategy game modeled off the real life board game.
 
+![Screen Shot 2022-01-24 at 11 24 59 PM](https://user-images.githubusercontent.com/56709970/150916397-0a574cbd-7edd-47f0-a6fa-31572193d5e6.png)
+
+![Screen Shot 2022-01-24 at 11 27 21 PM](https://user-images.githubusercontent.com/56709970/150916625-77882360-7537-4903-ad4f-ee5ad6d33d82.png)
+
+
 ## Features
 * Gameplay based off real Connect 4 rules:
   * Each player takes turns dropping a token into their desired column of the game board
