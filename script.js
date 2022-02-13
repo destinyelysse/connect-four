@@ -21,9 +21,14 @@ function returnNewGameBoardArray() {
   return gameBoard;
 }
 
+function presentSetupOptions() {
+  hideHomeBtns();
+  showSetupDisplay();
+}
+
 function startGame() {
   hideGameTitle();
-  hideHomeScreen();
+  hideSetupDisplay();
   generateGameBoard();
   showGameScreen();
   setGameMessageForPlayerTurn();
@@ -35,11 +40,20 @@ function hideGameTitle() {
   title.classList.add("d-none");
 }
 
-function hideHomeScreen() {
-  homeScreen = document.getElementById("home-screen");
+function hideHomeBtns() {
+  homeScreen = document.getElementById("home-btns");
   homeScreen.classList.add("d-none");
 }
 
+function showSetupDisplay() {
+  setupScreen = document.getElementById("setup-screen");
+  setupScreen.classList.remove("d-none");
+}
+
+function hideSetupDisplay() {
+  setupScreen = document.getElementById("setup-screen");
+  setupScreen.classList.add("d-none");
+}
 function showGameScreen() {
   gameScreen = document.getElementById("game-screen");
   gameScreen.classList.remove("d-none");
@@ -51,9 +65,8 @@ function generateGameBoard() {
 }
 
 function setGameMessageForPlayerTurn() {
-  document.getElementById(
-    "game-message"
-  ).textContent = `${currentPlayer}, your turn!`;
+  document.getElementById("game-message").textContent = `${currentPlayer}, 
+  your turn!`;
 }
 
 function generateTokenGutter() {
@@ -369,14 +382,13 @@ function gameHasNoSpacesLeft() {
 }
 
 function setGameMessageEndGame() {
-  document.getElementById(
-    "game-message"
-  ).textContent = `${currentPlayer} WINS!`;
+  document.getElementById("game-message").textContent = `${currentPlayer}, 
+  YOU WIN!`;
 }
 
 function setGameMessageOutOfSpaces() {
-  document.getElementById("game-message").textContent =
-    "DRAW! No more spaces available.";
+  document.getElementById("game-message").textContent = `DRAW!
+    Board full.`;
 }
 
 function displayPlayAgainButton() {
@@ -418,6 +430,7 @@ function resizeTokens() {
   const tokens = document.getElementsByClassName("token");
   for (let i = 0; i < tokens.length; i++) {
     const token = tokens[i];
+    token.classList.add("notransition");
     const tokenSpace = token.getAttribute("data-space");
     const space = document.getElementById(`${tokenSpace}`);
     spaceRect = space.getBoundingClientRect();
@@ -427,5 +440,6 @@ function resizeTokens() {
     token.style.height = `${spaceRect.height * 0.9}px`;
     token.style.marginLeft = `${spaceRect.width * 0.05}px`;
     token.style.marginTop = `${spaceRect.height * 0.05}px`;
+    token.classList.remove("notransition");
   }
 }

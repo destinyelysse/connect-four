@@ -17,9 +17,11 @@
     ></script>
     <link href="styles.css" type="text/css" rel="stylesheet" />
     <script src="script.js" defer></script>
-    <title>Document</title>
+    <title>Connect Four</title>
   </head>
   <body class="vh-100 m-0 bg-info bg-opacity-50">
+    <!-- HOME -->
+    <!-- GAME TITLE -->
     <header id="game-title" class="container d-flex justify-content-center">
       <h1
         class="d-inline display-1 text-center bg-warning border border-primary border-5 rounded-3 font-balsamiq-sans text-primary m-2 p-3"
@@ -28,7 +30,30 @@
       </h1>
     </header>
     <main class="h-75 d-flex align-items-start justify-content-center">
-      <!-- Instructions -->
+      <!-- HOME BTNS -->
+      <div
+        class="d-flex flex-column justify-content-end align-items-center"
+        id="home-btns"
+      >
+        <button
+          type="button"
+          id="startGameBtn"
+          class="btn btn-primary btn-lg home-btn"
+          onclick="presentSetupOptions()"
+        >
+          Start Game
+        </button>
+        <button
+          type="button"
+          id="instructions-btn"
+          class="btn btn-light btn-lg home-btn"
+          data-bs-toggle="modal"
+          data-bs-target="#instructionsModal"
+        >
+          How To
+        </button>
+      </div>
+      <!-- INSTRUCTIONS -->
       <div
         class="modal fade"
         id="instructionsModal"
@@ -93,55 +118,104 @@
           </div>
         </div>
       </div>
-      <!-- Home Screen -->
-      <div class="d-flex justify-content-center" id="home-screen">
-        <button
-          type="button"
-          id="startGameBtn"
-          class="btn btn-primary btn-lg m-2"
-          onclick="startGame()"
+      <!-- SETUP -->
+      <div
+        id="setup-screen"
+        class="d-none w-100 m4 d-flex flex-wrap justify-content-center"
+      >
+        <div
+          id="player-1-details"
+          class="player-setup d-flex flex-column justify-content-center align-items-center border border-primary border-5"
         >
-          Start Game
-        </button>
-        <button
-          type="button"
-          class="btn btn-light btn-lg m-2"
-          data-bs-toggle="modal"
-          data-bs-target="#instructionsModal"
-        >
-          View Instructions
-        </button>
-      </div>
-      <!-- Game Screen -->
-      <div class="d-none w-100" id="game-screen">
-        <div id="connect-four-board-container"></div>
-        <div id="gameplay-note" class="d-flex justify-content-center w-100">
-          <h2 class="fs-3" id="game-message">Your turn, Player 1!</h2>
+          <h2 class="display-3 m-2">Player 1</h2>
+          <label for="player-1-name" class="display-6 m-2"
+            >Enter Your Name</label
+          >
+          <input
+            type="text"
+            id="player-1-name"
+            class="form-control-lg m-2"
+            placeholder="Player 1"
+          />
+          <label for="player-1-token-color" class="display-6 m-2"
+            >Select Token Color</label
+          >
+          <input
+            type="color"
+            id="player-1-token-color"
+            class="m-2"
+            value="ff0000"
+          />
         </div>
-        <div id="gameplay-buttons" class="d-flex justify-content-center w-100">
+        <div
+          id="player-2-details"
+          class="player-setup d-flex flex-column justify-content-center align-items-center border border-primary border-5"
+        >
+          <h2 class="display-3 m-2">Player 2</h2>
+          <label for="player-2-name" class="display-6 m-2"
+            >Enter Your Name</label
+          >
+          <input
+            type="text"
+            id="player-2-name"
+            class="form-control-lg m-2"
+            placeholder="Player 2"
+          />
+          <label for="player-2-token-color" class="display-6 m-2"
+            >Select Token Color</label
+          >
+          <input
+            type="color"
+            id="player-2-token-color"
+            class="m-2"
+            value="ff0000"
+          />
+        </div>
+        <div id="play-button-container">
           <button
             type="button"
-            class="btn btn-primary m-3"
+            onclick="startGame()"
+            class="btn btn-primary btn-lg m-1"
+            id="play"
+          >
+            Play!
+          </button>
+        </div>
+      </div>
+      <!-- GAME SCREEN -->
+      <div class="d-none w-100 m-4" id="game-screen">
+        <div id="gameplay-note m-1" class="d-flex justify-content-center w-100">
+          <h2 class="display-3 text-center" id="game-message">
+            Player 1, your turn!
+          </h2>
+        </div>
+        <!-- GAME BOARD -->
+        <div id="connect-four-board-container"></div>
+        <!-- GAME BTNS -->
+        <div id="gameplay-buttons" class="flex-box w-100">
+          <button
+            type="button"
+            class="btn btn-primary m-3 game-btn"
             id="move-left-btn"
             onclick="moveCurrentTokenLeft()"
           >
-            Move Left
+            Left
           </button>
           <button
             type="button"
-            class="btn btn-danger btn-lg m-3"
+            class="btn btn-danger btn-lg m-3 game-btn"
             id="drop-token-btn"
             onclick="dropToken()"
           >
-            Drop Token!
+            Drop!
           </button>
           <button
             type="button"
-            class="btn btn-primary m-3"
+            class="btn btn-primary m-3 game-btn"
             id="move-right-btn"
             onclick="moveCurrentTokenRight()"
           >
-            Move Right
+            Right
           </button>
         </div>
         <div
@@ -150,7 +224,7 @@
         >
           <button
             type="button"
-            class="btn btn-primary m3"
+            class="btn btn-primary btn-lg m-3 game-btn"
             id="play-again-btn"
             onclick="playAgain()"
           >

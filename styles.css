@@ -8,9 +8,82 @@ html {
   font-family: "Balsamiq Sans";
 }
 
+.flex-box {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+#startGameBtn {
+  font-size: 60px;
+}
+
+#instructions-btn {
+  font-size: 44px;
+  margin: 1rem 2rem;
+}
+
+#home-btns {
+  height: 50vh;
+}
+
+@media screen and (max-width: 1000px) {
+  #startGameBtn {
+    font-size: 44px;
+  }
+
+  #instructions-btn {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #startGameBtn {
+    font-size: 36px;
+  }
+
+  #instructions-btn {
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  #startGameBtn {
+    font-size: 24px;
+  }
+
+  #instructions-btn {
+    font-size: 18px;
+  }
+}
+
+#play {
+  font-size: 60px;
+}
+
+.player-setup {
+  width: 40%;
+  margin: 1rem;
+}
+
+@media screen and (max-width: 750px) {
+  .player-setup {
+    width: 90vw;
+  }
+}
+
+#play-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+}
+
 #connect-four-board-container {
-  height: 75vh;
-  width: 75vh;
+  height: min(70vh, 90vw);
+  width: min(70vh, 90vw);
   display: grid;
   grid-template: repeat(7, 1fr) / repeat(7, 1fr);
   margin: 0.5rem auto;
@@ -48,4 +121,55 @@ html {
 #connect-four-img {
   width: 200px;
   margin-bottom: 10px;
+}
+
+.game-btn {
+  font-size: 36px;
+}
+
+@media screen and (max-width: 400px) {
+  .game-btn {
+    font-size: 28px !important;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .game-btn {
+    font-size: 24px !important;
+  }
+
+  #gameplay-buttons {
+    flex-flow: row wrap;
+  }
+
+  #move-left-btn {
+    order: 2;
+    width: 35%;
+    margin: 0;
+  }
+
+  #drop-token-btn {
+    order: -1;
+    width: 80%;
+  }
+
+  #move-right-btn {
+    order: 3;
+    width: 35%;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 275px) {
+  .game-btn {
+    font-size: 20px !important;
+  }
+}
+
+.notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
 }
