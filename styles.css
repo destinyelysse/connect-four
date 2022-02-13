@@ -110,14 +110,6 @@ html {
   z-index: -1;
 }
 
-.token-red {
-  background-color: red;
-}
-
-.token-green {
-  background-color: green;
-}
-
 #connect-four-img {
   width: 200px;
   margin-bottom: 10px;

@@ -1,10 +1,10 @@
 let gameTokens = 0;
 let currentToken = null;
 let currentGutterPosition = 4;
-const player1tokenColor = "red";
-const player1name = "Player 1";
-const player2tokenColor = "green";
-const player2name = "Player 2";
+let player1tokenColor = "red";
+let player1name = "Player 1";
+let player2tokenColor = "green";
+let player2name = "Player 2";
 let playerGoingFirst = player1name;
 let currentPlayer = player1name;
 let currentTokenColor = player1tokenColor;
@@ -29,6 +29,7 @@ function presentSetupOptions() {
 function startGame() {
   hideGameTitle();
   hideSetupDisplay();
+  setupPlayerDetails();
   generateGameBoard();
   showGameScreen();
   setGameMessageForPlayerTurn();
@@ -54,6 +55,23 @@ function hideSetupDisplay() {
   setupScreen = document.getElementById("setup-screen");
   setupScreen.classList.add("d-none");
 }
+
+function setupPlayerDetails() {
+  const p1Name = document.getElementById("player-1-name").value;
+  const p1TokenColor = document.getElementById("player-1-token-color").value;
+  console.log(p1TokenColor);
+  const p2Name = document.getElementById("player-2-name").value;
+  const p2TokenColor = document.getElementById("player-2-token-color").value;
+  player1name = p1Name;
+  player1tokenColor = p1TokenColor;
+  player2name = p2Name;
+  player2tokenColor = p2TokenColor;
+  document.getElementById(
+    "game-message"
+  ).textContent = `${player1name}, your turn!`;
+  currentPlayer = player1name;
+}
+
 function showGameScreen() {
   gameScreen = document.getElementById("game-screen");
   gameScreen.classList.remove("d-none");
@@ -124,7 +142,8 @@ function makeNewToken() {
   let gutterPos = document.getElementById(`gutter-${currentGutterPosition}-0`);
   let gutterRect = gutterPos.getBoundingClientRect();
   newToken.id = `token-${gameTokens}`;
-  newToken.classList = `token ${getTokenColorClass()}`;
+  newToken.classList = `token`;
+  newToken.style.backgroundColor = getCurrentPlayerColor();
   newToken.setAttribute("data-space", gutterPos.id);
   newToken.style.top = `${gutterPos.offsetTop}px`;
   newToken.style.left = `${gutterPos.offsetLeft}px`;
@@ -225,8 +244,12 @@ function toggleColor() {
   }
 }
 
-function getTokenColorClass() {
-  return `token-${currentTokenColor}`;
+function getCurrentPlayerColor() {
+  if (currentPlayer === player1name) {
+    return player1tokenColor;
+  } else {
+    return player2tokenColor;
+  }
 }
 
 function gameHasSpaces() {
