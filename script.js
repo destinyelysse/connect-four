@@ -68,7 +68,7 @@ function setupPlayerDetails() {
   player2tokenColor = p2TokenColor;
   document.getElementById(
     "game-message"
-  ).textContent = `${player1name}, your turn!`;
+  ).textContent = `${player1name},\nyour turn!`;
   currentPlayer = player1name;
 }
 
@@ -83,8 +83,9 @@ function generateGameBoard() {
 }
 
 function setGameMessageForPlayerTurn() {
-  document.getElementById("game-message").textContent = `${currentPlayer}, 
-  your turn!`;
+  document.getElementById(
+    "game-message"
+  ).textContent = `${currentPlayer},\nyour turn!`;
 }
 
 function generateTokenGutter() {
